@@ -15,7 +15,7 @@ var ErrInvalidArguments = errors.New("invalid arguments")
 
 func SubCommand(args []string, commands []Command) error {
 	if len(args) == 0 {
-		return fmt.Errorf("required subcommand")
+		return fmt.Errorf("subcommand is required")
 	}
 	subCommand := args[0]
 
