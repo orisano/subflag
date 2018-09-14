@@ -4,6 +4,7 @@ import (
 	"errors"
 	"flag"
 	"fmt"
+	"strings"
 )
 
 type Command interface {
@@ -13,9 +14,17 @@ type Command interface {
 
 var ErrInvalidArguments = errors.New("invalid arguments")
 
+func showSubCommands(commands []Command) string {
+	var names []string
+	for _, command := range commands {
+		names = append(names, " - " + command.FlagSet().Name())
+	}
+	return strings.Join(names, "\n")
+}
+
 func SubCommand(args []string, commands []Command) error {
 	if len(args) == 0 {
-		return fmt.Errorf("subcommand is required")
+		return fmt.Errorf("subcommand is required: \n%s", showSubCommands(commands))
 	}
 	subCommand := args[0]
 
@@ -33,5 +42,5 @@ func SubCommand(args []string, commands []Command) error {
 		}
 		return err
 	}
-	return fmt.Errorf("subcommand was not found: %q", subCommand)
+	return fmt.Errorf("subcommand was not found: %q\n%s", subCommand, showSubCommands(commands))
 }
