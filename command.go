@@ -33,5 +33,5 @@ func SubCommand(args []string, commands []Command) error {
 		}
 		return err
 	}
-	return fmt.Errorf("subcommand not found: %q", subCommand)
+	return fmt.Errorf("subcommand was not found: %q", subCommand)
 }
