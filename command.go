@@ -19,7 +19,7 @@ func showSubCommands(commands []Command) string {
 	for _, command := range commands {
 		names = append(names, " - " + command.FlagSet().Name())
 	}
-	return strings.Join(names, "\n")
+	return "Available SubCommands:\n" + strings.Join(names, "\n")
 }
 
 func SubCommand(args []string, commands []Command) error {
