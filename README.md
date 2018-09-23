@@ -1,4 +1,6 @@
 # subflag
+subflag is subcommand library for flag package.
+
 ## Installation
 ```bash
 go get github.com/orisano/subflag
