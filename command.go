@@ -12,7 +12,8 @@ type Command interface {
 	Run(args []string) error
 }
 
-var ErrInvalidArguments = errors.New("invalid arguments")
+// ErrInvalidArguments is deprecated. instead of use flag.ErrHelp
+var ErrInvalidArguments = errors.New("invalid arguments (deprecated)")
 
 func showSubCommands(commands []Command) string {
 	var names []string
@@ -37,7 +38,8 @@ func SubCommand(args []string, commands []Command) error {
 			return err
 		}
 		err := command.Run(flagSet.Args())
-		if err == ErrInvalidArguments && flagSet.Usage != nil {
+		showUsage := err == flag.ErrHelp || err == ErrInvalidArguments // for backward compatibility
+		if showUsage && flagSet.Usage != nil {
 			flagSet.Usage()
 		}
 		return err

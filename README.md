@@ -37,7 +37,7 @@ func (c *EchoCommand) FlagSet() *flag.FlagSet {
 
 func (c *EchoCommand) Run(args []string) error {
     if len(c.text) == 0 {
-        return subflag.ErrInvalidArgument
+        return flag.ErrHelp
     }
     fmt.Println(c.text)
     return nil
