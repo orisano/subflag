@@ -12,13 +12,14 @@ type Command interface {
 	Run(args []string) error
 }
 
-// ErrInvalidArguments is deprecated. instead of use flag.ErrHelp
+// ErrInvalidArguments is ...
+// Deprecated: instead of use flag.ErrHelp
 var ErrInvalidArguments = errors.New("invalid arguments (deprecated)")
 
 func showSubCommands(commands []Command) string {
 	var names []string
 	for _, command := range commands {
-		names = append(names, " - " + command.FlagSet().Name())
+		names = append(names, " - "+command.FlagSet().Name())
 	}
 	return "Available SubCommands:\n" + strings.Join(names, "\n")
 }
