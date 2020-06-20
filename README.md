@@ -1,5 +1,5 @@
 # subflag
-subflag is subcommand library for flag package.
+subflag is a subcommand library for `flag` package.
 
 ## Installation
 ```bash
